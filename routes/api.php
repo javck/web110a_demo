@@ -18,6 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('products/query', 'App\Http\Controllers\Api\ProductController@query');
+
 //為所有的 API 加入 JWT 的保護
 Route::middleware("auth:api")->group(function () {
     //註冊 categories API 的路由
@@ -27,6 +29,7 @@ Route::middleware("auth:api")->group(function () {
 
 
     //註冊 products API 的路由
+
     Route::post('products/updateCategory', 'App\Http\Controllers\Api\ProductController@updateCategory');
     //可搭配 php artisan make:controller Api/ProductController --resource --api 來生成檔案
     Route::apiResource('products', 'App\Http\Controllers\Api\ProductController');

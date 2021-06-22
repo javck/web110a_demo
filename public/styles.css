@@ -1,0 +1,88 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.main {
+  padding: 10px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputText {
+  padding: 10px 7px;
+  border-radius: 3px;
+  margin-right: 2px;
+  margin-left: 2px;
+  /*width: 100%; */
+  font-size: large;
+}
+
+button {
+  padding: 10px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 2px;
+  margin-left: 2px;
+  font-size: large;
+}
+
+.bg-default {
+  background-color: rgba(70, 130, 236, 1);
+  border: 1px solid rgba(28, 28, 49, 1);
+  color: white;
+}
+
+.bg-danger {
+  background-color: red;
+  border: 1px solid rgba(28, 28, 49, 1);
+  color: white;
+}
+
+.font-xxlarge {
+  font-size: xx-large;
+}
+
+.inputButton {
+  padding: 10px 10px;
+  border-radius: 3px;
+  background-color: rgba(70, 130, 236, 1);
+  color: white;
+  border: 1px solid rgba(28, 28, 49, 1);
+  cursor: pointer;
+  margin-right: 2px;
+  margin-left: 2px;
+  font-size: large;
+}
+
+.postCard {
+  padding: 4px;
+  border-radius: 3px;
+  box-shadow: 3px 0 0 3px rgba(28, 28, 49, 1);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  margin: 17px 1px;
+}
+
+.postCard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.postDetailItem {
+  padding: 5px 2px;
+}

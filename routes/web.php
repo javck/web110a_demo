@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::view('/demo', 'index');
+Route::view('/products/query','products');
 
 // Route::get('/orders/{id}',function(){
 //     $order = App\Models\Order::find(1);

@@ -91,6 +91,16 @@ class ProductController extends Controller
         }
     }
 
+    public function query(Request $request)
+    {
+        $products = Product::where('enabled', true)->where('name', 'like', '%' . $request->s . '%')->orderBy('price', 'asc')->get();
+        if ($products && count($products) > 0) {
+                return $this->makeJson(1, $products);
+        } else {
+            return $this->makeJson(0, null, '找不到商品資料');
+        }
+    }
+
     /**
      * 更新某一個產品
      *
