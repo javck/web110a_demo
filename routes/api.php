@@ -21,3 +21,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //註冊 categories API 的路由
 //可搭配 php artisan make:controller Api/CategoryController --resource --api 來生成檔案
 Route::apiResource('categories','App\Http\Controllers\Api\CategoryController');
+Route::get('categories/products/{id}','App\Http\Controllers\Api\CategoryController@categoryProducts');
+
+
+//註冊 products API 的路由
+Route::post('products/updateCategory','App\Http\Controllers\Api\ProductController@updateCategory');
+//可搭配 php artisan make:controller Api/ProductController --resource --api 來生成檔案
+Route::apiResource('products','App\Http\Controllers\Api\ProductController');
+
+
+//註冊 orders API 的路由
+//可搭配 php artisan make:controller Api/OrderController --resource --api 來生成檔案
+Route::apiResource('orders','App\Http\Controllers\Api\OrderController');

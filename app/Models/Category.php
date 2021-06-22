@@ -13,6 +13,12 @@ class Category extends Model
     protected $fillable = ['name','parent_id','enabled','sort'];
     //protected $guarded = [];
 
+    //這兩個欄位的呈現只要有年月日即可
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime:Y-m-d'
+    ];
+
     public function products()
     {
        return $this->hasMany(Product::class);

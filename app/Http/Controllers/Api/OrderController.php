@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Http\Controllers\Controller;
 
-/**
- * 處理給 API 使用的CRUD功能
- *
- */
-class CategoryController extends Controller
+class OrderController extends Controller
 {
-
     /**
      * 用來生成回應所需要的 JSON 字串
      * @param integer $status 0為失敗，1為成功
@@ -31,26 +26,15 @@ class CategoryController extends Controller
     }
 
     /**
-     * 回傳所有上架的分類資料
+     * 回傳所有上架的訂單資料
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         //SQL查詢示範
-        $data = Category::where('enabled',true)->orderBy('sort','asc')->get();
+        $data = Order::get();
 
-        if($data && count($data) > 0){
-            return $this->makeJson(1,$data,null);
-        }else{
-            return $this->makeJson(0,null,'資料不存在');
-        }
-    }
-
-    public function categoryProducts($id)
-    {
-        $category = Category::findOrFail($id);
-        $data = $category->products;
         if($data && count($data) > 0){
             return $this->makeJson(1,$data,null);
         }else{
@@ -59,7 +43,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * 新增一個分類
+     * 新增一個訂單
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -67,7 +51,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //新增資料示範
-        $category = Category::create($request->only(['name','enabled','sort']));
+        $category = Order::create($request->all());
 
         if($category){
             return $this->makeJson(1,$category,null);
@@ -77,7 +61,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * 回傳某一個分類的資料
+     * 回傳某一個產品的資料
      *
      * @param  int  $id 主鍵
      * @return \Illuminate\Http\Response
@@ -85,17 +69,17 @@ class CategoryController extends Controller
     public function show($id)
     {
         //用主鍵來查詢資料示範
-        $category = Category::find($id);
+        $product = Product::find($id);
 
-        if($category){
-            return $this->makeJson(1,$category,null);
+        if($product){
+            return $this->makeJson(1,$product,null);
         }else{
             return $this->makeJson(0,null,'查詢該資料異常');
         }
     }
 
     /**
-     * 更新某一個分類
+     * 更新某一個產品
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id 主鍵
@@ -103,10 +87,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
-        if($category){
+        $product = Product::find($id);
+        if($product){
             //更新資料示範
-            $row = $category->update($request->only(['parent_id','name','enabled','sort']));
+            $row = $product->update($request->all());
 
             if($row == 1){
                 return $this->makeJson(1, null,null);
@@ -119,18 +103,18 @@ class CategoryController extends Controller
     }
 
     /**
-     * 刪除某一個分類的資料
+     * 刪除某一個產品的資料
      *
      * @param  int  $id 主鍵
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
+        $product = Product::find($id);
 
-        if($category){
+        if($product){
             //刪除資料示範
-            $row = $category->delete();
+            $row = $product->delete();
 
             if($row == 1){
                 return $this->makeJson(1, null,null);

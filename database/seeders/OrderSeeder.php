@@ -25,13 +25,16 @@ class OrderSeeder extends Seeder
         $products = Product::get();
         foreach ($orders as $order) {
             $order->save();
-            //隨機取出一個商品
-            $product = $products[rand(0,count($products)-1)];
-            $newOrderProduct = new OrderProduct();
-            $newOrderProduct->order_id = $order->id;
-            $newOrderProduct->product_id = $product->id;
-            $newOrderProduct->qty = rand(1,10);
-            $newOrderProduct->save();
+            $qty = rand(1,5);
+            for ($i=0; $i < $qty; $i++) {
+                 //隨機取出一個商品
+                $product = $products[rand(0,count($products)-1)];
+                $newOrderProduct = new OrderProduct();
+                $newOrderProduct->order_id = $order->id;
+                $newOrderProduct->product_id = $product->id;
+                $newOrderProduct->qty = rand(1,10);
+                $newOrderProduct->save();
+            }
         }
         $orders = Order::get();
         foreach ($orders as $order) {

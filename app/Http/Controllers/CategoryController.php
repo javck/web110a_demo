@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+/**
+ * 處理給後端使用的CRUD功能
+ *
+ */
 class CategoryController extends Controller
 {
 
     /**
-     * 顯示表格的多筆(所有)資料
+     * 顯示分類的多筆(所有)資料
      *
      * @return \Illuminate\Http\Response
      */
@@ -24,6 +28,8 @@ class CategoryController extends Controller
             return $this->makeJson(0,null,'資料不存在');
         }
     }
+
+
 
     /**
      * Show the form for creating a new resource.
