@@ -18,4 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//註冊 categories API 的路由
+//可搭配 php artisan make:controller Api/CategoryController --resource --api 來生成檔案
 Route::apiResource('categories','App\Http\Controllers\Api\CategoryController');
