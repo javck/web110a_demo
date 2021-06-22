@@ -1,38 +1,36 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Category;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
 
+    private function makeJson($status , $data = null , $msg = null)
+    {
+        return response()->json([
+            'status'=>$status,
+            'data' => $data,
+            'message' => $msg
+        ])->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+    }
+
     /**
-     * 顯示表格的多筆(所有)資料
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //Category::all(); //直接取得表格的所有資料
-        //return Category::get(); //根據你的條件來取得符合的資料
         $data = Category::where('enabled',true)->where('parent_id',1)->orderBy('id','desc')->get();
         if($data && count($data) > 0){
             return $this->makeJson(1,$data,null);
         }else{
             return $this->makeJson(0,null,'資料不存在');
         }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //只有做後端的CRUD會用到，可以用Voyager來搞定
     }
 
     /**
@@ -43,13 +41,6 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //  return Category::create([
-        //     'parent_id' => 1,
-        //     'name' => '我的分類',
-        //     'enabled' => true,
-        //     'sort' => 9
-        // ]);
-
         $category = Category::create($request->only(['name','enabled','sort']));
 
         if($category){
@@ -57,19 +48,16 @@ class CategoryController extends Controller
         }else{
             return $this->makeJson(0,null,'新增資料異常');
         }
-
     }
 
     /**
      * Display the specified resource.
-     * 顯示某一筆資料
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //select * from categories where id = 1;
         $category = Category::find($id);
 
         if($category){
@@ -77,17 +65,6 @@ class CategoryController extends Controller
         }else{
             return $this->makeJson(0,null,'查詢該資料異常');
         }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //只有做後端的CRUD會用到，可以用Voyager來搞定
     }
 
     /**
@@ -100,12 +77,6 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::find($id);
-        //$category->parent_id = $request->parent_id;
-        //$category->name = $request->name;
-        // $category->enabled = $request->enabled;
-        // $category->sort = $request->sort;
-        //$category->save();
-        //return $category;
         if($category){
             $row = $category->update($request->only(['parent_id','name','enabled','sort']));
             if($row == 1){
@@ -116,7 +87,6 @@ class CategoryController extends Controller
         }else{
             return $this->makeJson(0, null,'找不到該筆資料');
         }
-
     }
 
     /**

@@ -59,5 +59,5 @@ Route::get('/orders/demo5',function(){
 });
 
 
-Route::resource('categories', 'App\Http\Controllers\CategoryController');
+//Route::resource('categories', 'App\Http\Controllers\CategoryController');
 
