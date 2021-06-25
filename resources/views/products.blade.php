@@ -41,7 +41,8 @@
     </div>
     <script>
         var myHeaders = new Headers();
-        myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZW1vLnRlc3RcL2FwaVwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MjQzNTYxODQsImV4cCI6MTYyNDM1OTc4NCwibmJmIjoxNjI0MzU2MTg0LCJqdGkiOiJsVTBNU0NYOUkwd0VDRDV3Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.BE7TM6r9_pl54Csz2HYm6N-1S80-VGU0yPuBrWlLldA");
+        //記得替換到你環境所給的Token，而且每小時要換一次
+        myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZW1vLnRlc3RcL2FwaVwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MjQ1ODAwNDQsImV4cCI6MTYyNDU4MzY0NCwibmJmIjoxNjI0NTgwMDQ0LCJqdGkiOiJpcExCWUZiUUVqWVhPdmpUIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-lw0HK7d4cf28kYm-V1xK-g8ipjnBgKrD7_CZ7SqJ8g");
 
         var requestOptions = {
             method: 'GET',
